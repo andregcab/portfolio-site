@@ -117,42 +117,63 @@ window.addEventListener('resize', () => {
   }
 });
 
-// Function to wrap each letter in a span
-function wrapLetters(element) {
-  const text = element.textContent;
-  element.textContent = '';
-
-  text.split('').forEach((letter, index) => {
-    const span = document.createElement('span');
-    span.textContent = letter;
-    span.className = 'letter-spacing';
-    span.style.animationDelay = `${index * 0.05}s`;
-    element.appendChild(span);
-  });
-}
-
-// Initialize hero animations
+// Dynamic navigation
 document.addEventListener('DOMContentLoaded', () => {
-  // Wrap letters in the hero title lines
-  document.querySelectorAll('.hero__title-line').forEach(wrapLetters);
+  const header = document.querySelector('.header');
+  const navLinks = document.querySelectorAll('.nav__links a');
+  let lastScrollY = window.scrollY;
+  let ticking = false;
 
-  // Add hover effect to the entire name
-  const nameLine = document.querySelector('.hero__title-line--name');
-  if (nameLine) {
-    nameLine.addEventListener('mouseenter', () => {
-      nameLine
-        .querySelectorAll('.letter-spacing')
-        .forEach((letter) => {
-          letter.style.letterSpacing = '0.1em';
-        });
+  function updateNav() {
+    const currentScrollY = window.scrollY;
+
+    // Add/remove background based on scroll position
+    if (currentScrollY > 50) {
+      header.classList.add('header--scrolled');
+    } else {
+      header.classList.remove('header--scrolled');
+    }
+
+    // Update active link based on scroll position
+    const sections = document.querySelectorAll('section[id]');
+    let currentSection = '';
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop - 100;
+      const sectionHeight = section.offsetHeight;
+      if (
+        currentScrollY >= sectionTop &&
+        currentScrollY < sectionTop + sectionHeight
+      ) {
+        currentSection = section.getAttribute('id');
+      }
     });
 
-    nameLine.addEventListener('mouseleave', () => {
-      nameLine
-        .querySelectorAll('.letter-spacing')
-        .forEach((letter) => {
-          letter.style.letterSpacing = '0';
-        });
+    navLinks.forEach((link) => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${currentSection}`) {
+        link.classList.add('active');
+      }
     });
+
+    // Hide/show nav based on scroll direction
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      header.classList.add('header--hidden');
+    } else {
+      header.classList.remove('header--hidden');
+    }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
   }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateNav);
+      ticking = true;
+    }
+  });
+
+  // Initial nav state
+  updateNav();
 });
