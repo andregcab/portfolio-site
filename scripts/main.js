@@ -82,10 +82,32 @@ function handleScroll() {
       section.classList.add('fade-in');
       section.style.opacity = '1';
       section.style.transform = 'translateY(0)';
+
+      // Handle experience cards fade-in
+      if (section.id === 'experience') {
+        const experienceCards = section.querySelectorAll(
+          '.experience-card'
+        );
+        experienceCards.forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.add('fade-in');
+          }, index * 200); // Stagger the animations
+        });
+      }
     } else if (rect.top > viewportHeight) {
       section.classList.remove('fade-in');
       section.style.opacity = '0';
       section.style.transform = 'translateY(20px)';
+
+      // Remove fade-in from experience cards when section is out of view
+      if (section.id === 'experience') {
+        const experienceCards = section.querySelectorAll(
+          '.experience-card'
+        );
+        experienceCards.forEach((card) => {
+          card.classList.remove('fade-in');
+        });
+      }
     }
   });
 }

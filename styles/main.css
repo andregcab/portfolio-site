@@ -313,6 +313,7 @@ section:not(#home).fade-in {
   line-height: 1.6;
   margin-left: 0;
   margin-top: 2rem;
+  margin-bottom: 2.5rem;
   opacity: 0;
   animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   animation-delay: 0.6s;
@@ -325,18 +326,44 @@ section:not(#home).fade-in {
   color: var(--color-text);
   border: 1px solid var(--color-text);
   font-size: 0.95rem;
-  padding: 0.8rem 1.8rem;
+  padding: 1rem 0.5rem;
+  border-bottom-right-radius: 2.5vw;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  margin-top: 1rem;
+  max-width: 10rem;
+  display: inline-block;
+  text-decoration: none;
+  text-align: left;
+  line-height: 1;
+  min-height: 4rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: var(--color-primary);
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
 }
 
 .button:hover {
-  background-color: var(--color-primary);
   color: var(--color-background);
   border-color: var(--color-primary);
   transform: translateY(-4px) scale(1.02);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.button:hover::before {
+  height: 100%;
 }
 
 .button:active {
@@ -346,10 +373,10 @@ section:not(#home).fade-in {
 .button--secondary {
   border-color: var(--color-primary);
   color: var(--color-primary);
+  min-width: 10rem;
 }
 
 .button--secondary:hover {
-  background-color: var(--color-primary);
   color: var(--color-background);
 }
 
@@ -364,8 +391,9 @@ section:not(#home).fade-in {
 
 .about__content {
   max-width: 800px;
+  width: 100%;
   margin: 0 auto;
-  text-align: center;
+  text-align: left;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
@@ -398,10 +426,84 @@ section:not(#home).fade-in {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
+/* Experience Cards */
+.experience-card {
+  background-color: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-text);
+  padding: 2rem 1.5rem;
+  border-bottom-right-radius: 3vw;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    min-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 8rem;
+  cursor: pointer;
+}
+
+.experience-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: var(--color-primary);
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.experience-card:hover {
+  color: var(--color-background);
+  border-color: var(--color-primary);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  min-height: 10rem;
+}
+
+.experience-card:hover::before {
+  height: 100%;
+}
+
+.experience-card:active {
+  transform: translateY(-3px) scale(0.98);
+}
+
+.experience-card__title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: inherit;
+  transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.experience-card__description {
+  font-size: 1rem;
+  color: inherit;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0;
+}
+
+.experience-card:hover .experience-card__description {
+  opacity: 1;
+  max-height: 200px;
+  margin-top: 0.5rem;
+}
+
 /* Contact Section */
 .contact__content {
-  text-align: center;
-  max-width: 600px;
+  text-align: left;
+  min-width: 600px;
+  width: 100%;
   margin: 0 auto;
   opacity: 0;
   transform: scale(0.95);
@@ -745,6 +847,12 @@ a:not(.hero__first-name):not(.hero__last-name):not(
   will-change: transform;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
+  /* Add illuminated border effect */
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3),
+    0 0 30px rgba(255, 255, 255, 0.15),
+    0 0 60px rgba(255, 255, 255, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 /* Optimize container performance */
