@@ -10,7 +10,37 @@ window.addEventListener('load', () => {
   }
 });
 
-// Smooth scroll for navigation links
+// Custom gliding scroll effect
+let isGlidingScroll = false;
+let glideScrollTimeout;
+
+function smoothScrollTo(targetY, duration = 800) {
+  const startY = window.pageYOffset;
+  const distance = targetY - startY;
+  const startTime = performance.now();
+
+  function easeInOutCubic(t) {
+    return t < 0.5
+      ? 4 * t * t * t
+      : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+  }
+
+  function animateScroll(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const easedProgress = easeInOutCubic(progress);
+
+    window.scrollTo(0, startY + distance * easedProgress);
+
+    if (progress < 1) {
+      requestAnimationFrame(animateScroll);
+    }
+  }
+
+  requestAnimationFrame(animateScroll);
+}
+
+// Simple smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -21,10 +51,13 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       const offsetPosition =
         elementPosition + window.pageYOffset - headerOffset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
+      // Simple subtle delay
+      setTimeout(() => {
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+      }, 100);
     }
   });
 });
@@ -36,7 +69,7 @@ const observerOptions = {
 };
 
 // Track scroll position for smooth border updates
-let scrollTimeout;
+let borderScrollTimeout;
 let lastScrollY = window.scrollY;
 
 // Simple scroll handler for border animations
@@ -113,16 +146,16 @@ function handleScroll() {
 }
 
 // Add scroll listener with throttling
-let isScrolling;
+let isBorderScrolling;
 window.addEventListener(
   'scroll',
   () => {
-    if (!isScrolling) {
+    if (!isBorderScrolling) {
       window.requestAnimationFrame(() => {
         handleScroll();
-        isScrolling = false;
+        isBorderScrolling = false;
       });
-      isScrolling = true;
+      isBorderScrolling = true;
     }
   },
   { passive: true }

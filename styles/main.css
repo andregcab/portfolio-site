@@ -12,6 +12,7 @@
 
   /* UI colors */
   --color-border: #d4c5b7; /* Warm taupe */
+  --color-divider: rgba(0, 0, 0, 0.2); /* Light warm brown */
   --color-hover: #e8dfd3; /* Light warm brown */
 
   /* Typography */
@@ -30,7 +31,7 @@
   --container-padding: var(--spacing-md);
 
   /* New container styles */
-  --color-container: #cbbeb0; /* Keep outer container color unchanged */
+  --color-container: #c0b3a5; /* Slightly darker and greyer container color */
   --border-radius-lg: 2rem;
   --container-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
@@ -50,19 +51,23 @@
 html {
   scroll-behavior: smooth;
   height: 100%;
-  background-color: var(--color-background);
+  overscroll-behavior: none;
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
   font-family: var(--font-primary);
   line-height: 1.6;
   color: var(--color-text);
-  background-color: var(--color-background);
+  /* background-color: var(--color-surface); */
   min-height: 100%;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  overscroll-behavior: none;
+  scroll-behavior: smooth;
 }
 
 /* Typography */
@@ -133,8 +138,8 @@ section::after {
   bottom: 0;
   left: 0;
   width: calc(var(--border-width, 0) * 100%);
-  height: 2px;
-  background-color: #2c2c2c !important; /* Dark grey, forcing with !important */
+  height: 1.5px;
+  background-color: var(--color-divider);
   transform-origin: left;
   transition: width 0.3s ease-out;
   /* Removing debug border */
@@ -327,7 +332,7 @@ section:not(#home).fade-in {
   border: 1px solid var(--color-text);
   font-size: 0.95rem;
   padding: 1rem 0.5rem;
-  border-bottom-right-radius: 2.5vw;
+  border-radius: 90% 10% 85% 15% / 15% 85% 10% 90%;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -392,7 +397,7 @@ section:not(#home).fade-in {
 .about__content {
   max-width: 800px;
   width: 100%;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   text-align: left;
   opacity: 0;
   transform: translateY(20px);
@@ -422,27 +427,42 @@ section:not(#home).fade-in {
 .experience__grid,
 .projects__grid {
   display: grid;
-  gap: var(--spacing-lg);
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.experience-card--bottom-right {
+  grid-column: 1 / -1;
+  justify-self: start;
+  width: 50%;
 }
 
 /* Experience Cards */
 .experience-card {
-  background-color: transparent;
+  background-color: #c0b3a5;
   color: var(--color-text);
-  border: 1px solid var(--color-text);
   padding: 2rem 1.5rem;
-  border-bottom-right-radius: 3vw;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    min-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom-right-radius: 4rem;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  min-height: 8rem;
+  height: 18rem;
   cursor: pointer;
+}
+
+.experience-card:nth-child(1)::before {
+  background-color: #463636;
+}
+
+.experience-card:nth-child(2)::before {
+  background-color: #dc7a1a;
+}
+
+.experience-card:nth-child(3)::before {
+  background-color: #8c0117;
 }
 
 .experience-card::before {
@@ -451,26 +471,43 @@ section:not(#home).fade-in {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 0;
-  background-color: var(--color-primary);
+  height: 100%;
   transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: -1;
+  z-index: 2;
+}
+
+.experience-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3rem;
+  height: 3rem;
+  background-image: url('../assets/cowboy-eyes.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 4;
 }
 
 .experience-card:hover {
-  color: var(--color-background);
-  border-color: var(--color-primary);
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-  min-height: 10rem;
+  color: white;
 }
 
 .experience-card:hover::before {
-  height: 100%;
+  height: 0;
+}
+
+.experience-card:hover::after {
+  opacity: 0;
 }
 
 .experience-card:active {
-  transform: translateY(-3px) scale(0.98);
+  transform: none;
 }
 
 .experience-card__title {
@@ -478,25 +515,26 @@ section:not(#home).fade-in {
   font-size: 1.4rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: inherit;
+  color: white;
   transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 3;
 }
 
 .experience-card__description {
   font-size: 1rem;
   color: inherit;
-  opacity: 0;
-  max-height: 0;
+  opacity: 1;
+  max-height: none;
   overflow: hidden;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  margin: 0;
+  margin-top: 0.5rem;
+  flex: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .experience-card:hover .experience-card__description {
-  opacity: 1;
-  max-height: 200px;
-  margin-top: 0.5rem;
+  overflow-y: auto;
 }
 
 /* Contact Section */
@@ -526,6 +564,40 @@ section:not(#home).fade-in {
   gap: var(--spacing-md);
   justify-content: center;
   flex-wrap: wrap;
+}
+
+/* Contact Icons */
+.contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.contact-icon:hover {
+  transform: scale(1.1) !important;
+  box-shadow: none !important;
+}
+
+.contact-icon:active {
+  transform: scale(1.1) !important;
+  box-shadow: none !important;
+}
+
+.contact-icon .icon-svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  filter: brightness(0) saturate(100%) invert(20%) sepia(0%)
+    saturate(0%) hue-rotate(0deg) brightness(30%) contrast(100%);
+}
+
+/* Make email icon bigger */
+.contact-icon:first-child .icon-svg {
+  width: 3rem;
+  height: 3rem;
 }
 
 /* Footer */
@@ -742,13 +814,6 @@ a {
   transition: color 0.3s ease;
 }
 
-/* Make hover effect specific to non-hero links */
-a:not(.hero__title-word):not(.hero__title-word--name):not(
-    .hero__subtitle
-  ):hover {
-  color: var(--color-secondary);
-}
-
 /* Ensure hero elements maintain their styles */
 .hero__title-word,
 .hero__title-word--name,
@@ -818,12 +883,6 @@ section.fade-in .section-title {
 }
 
 /* Add a subtle hover effect to all interactive elements */
-a:not(.hero__first-name):not(.hero__last-name):not(
-    .hero__subtitle
-  ):hover {
-  transform: translateY(-2px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
 
 /* New container styles */
 .page-wrapper {
@@ -839,7 +898,7 @@ a:not(.hero__first-name):not(.hero__last-name):not(
 
 .page-container {
   min-height: 100%;
-  background-color: var(--color-surface);
+  background-color: var(--color-background);
   border-radius: var(--border-radius-lg);
   margin: 1.25rem;
   position: relative;
@@ -848,11 +907,11 @@ a:not(.hero__first-name):not(.hero__last-name):not(
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   /* Add illuminated border effect */
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3),
-    0 0 30px rgba(255, 255, 255, 0.15),
-    0 0 60px rgba(255, 255, 255, 0.08),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  /* border: 2px solid rgba(255, 255, 255, 0.6); */
+  /* box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3), */
+  /* 0 0 30px rgba(255, 255, 255, 0.15), */
+  /* 0 0 60px rgba(255, 255, 255, 0.08), */
+  /* inset 0 0 0 1px rgba(255, 255, 255, 0.2); */
 }
 
 /* Optimize container performance */
@@ -863,4 +922,159 @@ a:not(.hero__first-name):not(.hero__last-name):not(
   will-change: transform;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+}
+
+/* Animated Blob Button */
+.blob-button {
+  position: relative;
+  margin-top: 1rem;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.8s ease-in-out;
+}
+
+.blob-button:hover {
+  transform: scale(1.08);
+}
+
+.blob-button span:nth-child(1) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--color-text);
+  border-radius: 32% 58% 69% 43% / 48% 32% 59% 55%;
+  transition: 1.2s ease-in-out;
+  animation: animate 12s linear infinite;
+}
+
+.blob-button span:nth-child(2) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--color-text);
+  border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+  transition: 1.2s ease-in-out;
+  animation: animate 8s linear infinite;
+}
+
+.blob-button span:nth-child(3) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--color-text);
+  border-radius: 31% 45% 74% 35% / 38% 56% 51% 87%;
+  transition: 1.2s ease-in-out;
+  animation: animate2 20s linear infinite;
+}
+
+.blob-button .content {
+  position: relative;
+  padding: 1rem 0.5rem;
+  text-align: center;
+  z-index: 1000;
+}
+
+.blob-button .content a {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate2 {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Get in Touch button with blob shapes */
+.get-in-touch-btn {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 15px 30px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.get-in-touch-btn:hover {
+  transform: scale(1.05);
+}
+
+.get-in-touch-btn .blob {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #e74c3c;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  animation: blob-float 8s ease-in-out infinite;
+}
+
+.get-in-touch-btn .blob:nth-child(2) {
+  border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+  animation-delay: -2s;
+  animation-duration: 10s;
+}
+
+.get-in-touch-btn .blob:nth-child(3) {
+  border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+  animation-delay: -4s;
+  animation-duration: 12s;
+}
+
+.get-in-touch-btn .blob:nth-child(4) {
+  border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+  animation-delay: -6s;
+  animation-duration: 9s;
+}
+
+@keyframes blob-float {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(90deg) scale(1.1);
+  }
+  50% {
+    transform: rotate(180deg) scale(0.95);
+  }
+  75% {
+    transform: rotate(270deg) scale(1.05);
+  }
+}
+
+.get-in-touch-btn span {
+  position: relative;
+  z-index: 1;
+  color: #2c3e50;
+  font-size: 1.2em;
+  font-weight: 600;
 }
