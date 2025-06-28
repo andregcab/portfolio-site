@@ -95,18 +95,6 @@ function handleScroll() {
         1 - Math.abs(distanceFromTrigger) / shrinkStartDistance;
     }
 
-    // Debug logging
-    console.log(
-      'Section:',
-      section.id,
-      'Progress:',
-      progress.toFixed(2),
-      'Distance from trigger:',
-      distanceFromTrigger.toFixed(2),
-      'Trigger point:',
-      triggerPoint.toFixed(2)
-    );
-
     // Direct style update
     section.style.setProperty('--border-width', progress);
 
@@ -213,19 +201,13 @@ let resizeTimeout;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(() => {
-    if (window.innerWidth <= 768 && !mobileMenuInitialized) {
+    if (
+      window.innerWidth <= 768 &&
+      !document.querySelector('.mobile-menu-button')
+    ) {
       createMobileMenu();
-      mobileMenuInitialized = true;
-    } else if (window.innerWidth > 768 && mobileMenuInitialized) {
-      const mobileMenu = document.querySelector('.mobile-menu');
-      const mobileMenuButton = document.querySelector(
-        '.mobile-menu-button'
-      );
-      if (mobileMenu) mobileMenu.remove();
-      if (mobileMenuButton) mobileMenuButton.remove();
-      mobileMenuInitialized = false;
     }
-  }, 100);
+  }, 250);
 });
 
 // Handle hero animations
