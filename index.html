@@ -51,11 +51,29 @@
               <li><a href="#projects">Projects</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
+            <button
+              class="mobile-menu-button"
+              aria-label="Toggle mobile menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
           </nav>
         </header>
 
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu">
+          <ul class="nav__links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
         <main class="main-content">
-          <section id="home" class="hero">
+          <section id="hero" id="home" class="hero">
             <div class="container">
               <div class="hero__title">
                 <span class="hero__first-name">Andre</span>
@@ -80,14 +98,23 @@
             <div class="container">
               <h2 class="section-title">About Me</h2>
               <div class="about__content">
-                <p class="about__text">
-                  I like to code with my friends.<br />
-                  I like to write code like my friends are going to
-                  read it.<br />
-                  I like to learn alongside people who are passionate
-                  and curious.<br />
-                  I like to improve people's lives through code.
-                </p>
+                <div class="about__text">
+                  <span class="about__line"
+                    >I like to code with my friends.</span
+                  >
+                  <span class="about__line"
+                    >I like to write code like my friends are going to
+                    read it.</span
+                  >
+                  <span class="about__line"
+                    >I like to learn alongside people who are
+                    passionate and curious.</span
+                  >
+                  <span class="about__line"
+                    >I like to improve people's lives through
+                    code.</span
+                  >
+                </div>
               </div>
             </div>
           </section>
@@ -113,6 +140,9 @@
                     increased business intelligence accessibility for
                     150+ non-technical staff
                   </p>
+                  <span class="experience-card__date"
+                    >January 2020 – January 2022</span
+                  >
                 </div>
                 <div class="experience-card">
                   <h3 class="experience-card__title">
@@ -129,6 +159,9 @@
                     focused on creating good documentation to help
                     other teams understand and work with our systems.
                   </p>
+                  <span class="experience-card__date"
+                    >January 2022 – March 2023</span
+                  >
                 </div>
                 <div class="experience-card">
                   <h3 class="experience-card__title">
@@ -154,6 +187,9 @@
                     product teams to improve our user experience and
                     design systems.
                   </p>
+                  <span class="experience-card__date"
+                    >March 2023 – Present</span
+                  >
                 </div>
               </div>
             </div>
