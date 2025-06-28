@@ -9,7 +9,10 @@
     <meta name="scroll-restoration" content="manual" />
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <title>Andre Cabrera | Software Engineer</title>
-    <meta name="description" content="Software Engineer" />
+    <meta
+      name="description"
+      content="Software Engineer with a knack for precision and a penchant for tomfoolery"
+    />
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
@@ -37,7 +40,10 @@
         <header class="header">
           <nav class="nav">
             <a href="#home" class="nav__logo"
-              >Hello <span class="nav__logo-icon">👋🏼</span></a
+              >Hello
+              <span class="nav__logo-icon" aria-hidden="true"
+                >👋🏼</span
+              ></a
             >
             <ul class="nav__links">
               <li><a href="#about">About</a></li>
@@ -45,11 +51,29 @@
               <li><a href="#projects">Projects</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
+            <button
+              class="mobile-menu-button"
+              aria-label="Toggle mobile menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
           </nav>
         </header>
 
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu">
+          <ul class="nav__links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
         <main class="main-content">
-          <section id="home" class="hero">
+          <section id="hero" id="home" class="hero">
             <div class="container">
               <div class="hero__title">
                 <span class="hero__first-name">Andre</span>
@@ -64,7 +88,7 @@
                 <span></span>
                 <span></span>
                 <a href="#contact" class="blob-button__link"
-                  >Check me out</a
+                  >Get in touch</a
                 >
               </div>
             </div>
@@ -74,14 +98,23 @@
             <div class="container">
               <h2 class="section-title">About Me</h2>
               <div class="about__content">
-                <p class="about__text">
-                  I like to code with my friends.<br />
-                  I like to write code like my friends are going to
-                  read it.<br />
-                  I like to learn alongside people who are passionate
-                  and curious.<br />
-                  I like to improve people's lives through code.
-                </p>
+                <div class="about__text">
+                  <span class="about__line"
+                    >I like to code with my friends.</span
+                  >
+                  <span class="about__line"
+                    >I like to write code like my friends are going to
+                    read it.</span
+                  >
+                  <span class="about__line"
+                    >I like to learn alongside people who are
+                    passionate and curious.</span
+                  >
+                  <span class="about__line"
+                    >I like to improve people's lives through
+                    code.</span
+                  >
+                </div>
               </div>
             </div>
           </section>
@@ -107,6 +140,9 @@
                     increased business intelligence accessibility for
                     150+ non-technical staff
                   </p>
+                  <span class="experience-card__date"
+                    >January 2020 – January 2022</span
+                  >
                 </div>
                 <div class="experience-card">
                   <h3 class="experience-card__title">
@@ -123,6 +159,9 @@
                     focused on creating good documentation to help
                     other teams understand and work with our systems.
                   </p>
+                  <span class="experience-card__date"
+                    >January 2022 – March 2023</span
+                  >
                 </div>
                 <div class="experience-card">
                   <h3 class="experience-card__title">
@@ -148,6 +187,9 @@
                     product teams to improve our user experience and
                     design systems.
                   </p>
+                  <span class="experience-card__date"
+                    >March 2023 – Present</span
+                  >
                 </div>
               </div>
             </div>
@@ -160,6 +202,7 @@
                 <a
                   href="https://doulikeme.online"
                   target="_blank"
+                  rel="noopener noreferrer"
                   class="project-card"
                 >
                   <h3 class="project-card__title">Do U Like Me?</h3>
@@ -172,13 +215,14 @@
                 <a
                   href="https://soundbored.online"
                   target="_blank"
+                  rel="noopener noreferrer"
                   class="project-card"
                 >
                   <h3 class="project-card__title">Soundbored</h3>
                   <p class="project-card__description">
                     A straightforward soundboard app. You upload small
                     sound files and can play them back. My main goal
-                    with this project was to create an app thats
+                    with this project was to create an app that's
                     simple enough to build and rich enough to use as
                     boilerplate to test out new technologies.
                   </p>
@@ -193,7 +237,7 @@
               <div class="contact__content">
                 <p class="contact__text">
                   Here is some of my contact information in case you
-                  want to see what I've been up to on Github or get an
+                  want to see what I've been up to on GitHub or get an
                   idea of what my face looks like via LinkedIn. My
                   email is pretty much reserved for a recruiter that
                   is just so impressed by this page, they are
@@ -205,7 +249,7 @@
                     href="#"
                     onclick="decodeAndCopyEmail()"
                     class="contact-icon"
-                    aria-label="Email Me"
+                    aria-label="Copy email address"
                   >
                     <img
                       src="assets/email.svg"
@@ -216,8 +260,9 @@
                   <a
                     href="https://www.linkedin.com/in/andregcabrera/"
                     target="_blank"
+                    rel="noopener noreferrer"
                     class="contact-icon"
-                    aria-label="LinkedIn"
+                    aria-label="LinkedIn Profile"
                   >
                     <img
                       src="assets/linkedin.svg"
@@ -228,8 +273,9 @@
                   <a
                     href="https://github.com/andregcab"
                     target="_blank"
+                    rel="noopener noreferrer"
                     class="contact-icon"
-                    aria-label="GitHub"
+                    aria-label="GitHub Profile"
                   >
                     <img
                       src="assets/github.svg"

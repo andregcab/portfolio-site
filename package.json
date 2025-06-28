@@ -1,14 +1,19 @@
 {
   "name": "portfolio-site-2.5",
   "version": "1.0.0",
-  "description": "A clean, modern, and responsive portfolio website built with vanilla HTML, CSS, and JavaScript. Features a warm, earthy color palette and smooth animations.",
+  "description": "A modern, responsive portfolio website featuring smooth animations, interactive elements, and a warm design aesthetic. Built with vanilla HTML, CSS, and JavaScript.",
   "main": "index.js",
   "scripts": {
     "start": "http-server -p 3000 -c-1",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "portfolio",
+    "vanilla-js",
+    "responsive",
+    "animations"
+  ],
+  "author": "Andre Cabrera",
   "license": "ISC",
   "devDependencies": {
     "http-server": "^14.1.1"

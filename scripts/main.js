@@ -95,18 +95,6 @@ function handleScroll() {
         1 - Math.abs(distanceFromTrigger) / shrinkStartDistance;
     }
 
-    // Debug logging
-    console.log(
-      'Section:',
-      section.id,
-      'Progress:',
-      progress.toFixed(2),
-      'Distance from trigger:',
-      distanceFromTrigger.toFixed(2),
-      'Trigger point:',
-      triggerPoint.toFixed(2)
-    );
-
     // Direct style update
     section.style.setProperty('--border-width', progress);
 
@@ -174,59 +162,60 @@ window.addEventListener('load', handleScroll);
 const sections = document.querySelectorAll('section:not(#home)');
 
 // Mobile menu functionality
-const createMobileMenu = () => {
-  const nav = document.querySelector('.nav');
-  const mobileMenuButton = document.createElement('button');
-  mobileMenuButton.classList.add('mobile-menu-button');
-  mobileMenuButton.setAttribute('aria-label', 'Toggle mobile menu');
-  mobileMenuButton.innerHTML = `<span class="mobile-menu-icon"></span>`;
+const mobileMenuButton = document.querySelector(
+  '.mobile-menu-button'
+);
+const mobileMenu = document.querySelector('.mobile-menu');
 
-  const mobileMenu = document.createElement('div');
-  mobileMenu.classList.add('mobile-menu');
-  mobileMenu.innerHTML = nav.querySelector('.nav__links').outerHTML;
+if (mobileMenuButton && mobileMenu) {
+  // Toggle menu on button click
+  mobileMenuButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    mobileMenu.classList.toggle('active');
+    mobileMenuButton.classList.toggle('active');
+  });
 
-  nav.appendChild(mobileMenuButton);
-  document.body.appendChild(mobileMenu);
+  // Close menu when clicking on a link
+  const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+  mobileMenuLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileMenu.classList.remove('active');
+      mobileMenuButton.classList.remove('active');
+    });
+  });
 
-  // Use event delegation for better performance
-  document.body.addEventListener('click', (e) => {
-    if (
-      e.target === mobileMenuButton ||
-      mobileMenuButton.contains(e.target)
-    ) {
-      mobileMenu.classList.toggle('active');
-      mobileMenuButton.classList.toggle('active');
-    } else if (!mobileMenu.contains(e.target)) {
+  // Close menu when clicking on the menu overlay (but not on links)
+  mobileMenu.addEventListener('click', (e) => {
+    // Only close if clicking on the overlay itself, not on links
+    if (e.target === mobileMenu) {
       mobileMenu.classList.remove('active');
       mobileMenuButton.classList.remove('active');
     }
   });
-};
 
-// Initialize mobile menu if needed
-if (window.innerWidth <= 768) {
-  createMobileMenu();
-}
-
-// Debounced resize handler
-let resizeTimeout;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    if (window.innerWidth <= 768 && !mobileMenuInitialized) {
-      createMobileMenu();
-      mobileMenuInitialized = true;
-    } else if (window.innerWidth > 768 && mobileMenuInitialized) {
-      const mobileMenu = document.querySelector('.mobile-menu');
-      const mobileMenuButton = document.querySelector(
-        '.mobile-menu-button'
-      );
-      if (mobileMenu) mobileMenu.remove();
-      if (mobileMenuButton) mobileMenuButton.remove();
-      mobileMenuInitialized = false;
+  // Close menu when clicking outside the entire menu
+  document.addEventListener('click', (e) => {
+    if (
+      !mobileMenu.contains(e.target) &&
+      !mobileMenuButton.contains(e.target)
+    ) {
+      mobileMenu.classList.remove('active');
+      mobileMenuButton.classList.remove('active');
     }
-  }, 100);
-});
+  });
+
+  // Close menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (
+      e.key === 'Escape' &&
+      mobileMenu.classList.contains('active')
+    ) {
+      mobileMenu.classList.remove('active');
+      mobileMenuButton.classList.remove('active');
+    }
+  });
+}
 
 // Handle hero animations
 document.addEventListener('DOMContentLoaded', () => {
