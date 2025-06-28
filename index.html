@@ -8,10 +8,7 @@
     />
     <meta name="scroll-restoration" content="manual" />
     <title>Andre Cabrera | Software Engineer</title>
-    <meta
-      name="description"
-      content="Frontend Software Engineer specializing in creating beautiful, user-friendly web experiences"
-    />
+    <meta name="description" content="Software Engineer" />
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
@@ -38,7 +35,9 @@
       <div class="page-container">
         <header class="header">
           <nav class="nav">
-            <a href="#home" class="nav__logo">Hello 👋🏼</a>
+            <a href="#home" class="nav__logo"
+              >Hello <span class="nav__logo-icon">👋🏼</span></a
+            >
             <ul class="nav__links">
               <li><a href="#about">About</a></li>
               <li><a href="#experience">Experience</a></li>
@@ -56,16 +55,16 @@
                 <span class="hero__last-name">Cabrera</span>
               </div>
               <p class="hero__subtitle">
-                Frontend Software Engineer crafting beautiful digital
-                experiences
+                Software Engineer with a knack for precision and a
+                penchant for tomfoolery
               </p>
               <div class="blob-button">
                 <span></span>
                 <span></span>
                 <span></span>
-                <div class="content">
-                  <a href="#contact">Get in touch</a>
-                </div>
+                <a href="#contact" class="blob-button__link"
+                  >Check me out</a
+                >
               </div>
             </div>
           </section>
@@ -110,35 +109,43 @@
                 </div>
                 <div class="experience-card">
                   <h3 class="experience-card__title">
+                    Software Engineer I - Conde Nast
+                  </h3>
+                  <p class="experience-card__description">
+                    I built a React-based content management system
+                    that streamlined how our editorial teams publish
+                    content globally. I worked closely with designers
+                    to create responsive, accessible interfaces using
+                    our component system. I helped design our GraphQL
+                    schemas and state management architecture to
+                    support scalable frontend development. I also
+                    focused on creating good documentation to help
+                    other teams understand and work with our systems.
+                  </p>
+                </div>
+                <div class="experience-card">
+                  <h3 class="experience-card__title">
                     Software Engineer II - Conde Nast
                   </h3>
                   <p class="experience-card__description">
-                    Built a React-based CMS to manage global content
-                    workflows, reducing editorial publishing time by
-                    50% Partnered with UX/UI designers to create
-                    intuitive, component-driven interfaces with an
-                    emphasis on accessibility and responsiveness Made
-                    key architectural decisions around GraphQL schemas
-                    and state management for scalable client-side
-                    development Actively contributed to internal
-                    documentation and knowledge sharing across teams
-                  </p>
-                </div>
-                <div
-                  class="experience-card experience-card--bottom-right"
-                >
-                  <h3 class="experience-card__title">
-                    Frontend Developer - Freelance
-                  </h3>
-                  <p class="experience-card__description">
-                    Developed responsive web applications for various
-                    clients using modern JavaScript frameworks and
-                    best practices Collaborated with designers and
-                    project managers to deliver high-quality solutions
-                    on time and within budget Implemented SEO
-                    optimization and performance improvements that
-                    increased page load speeds by 40% Provided ongoing
-                    maintenance and support for client websites
+                    I led a major refactor of our UI codebase that
+                    spanned multiple teams, introducing better
+                    architecture patterns that made development faster
+                    and more reliable. I also designed and built
+                    GraphQL APIs to handle complex content management
+                    workflows across different platforms. I spend a
+                    lot of time mentoring other engineers, helping
+                    them grow and improving our overall code quality.
+                    I've been working on migrating our older
+                    components to TypeScript, which has significantly
+                    reduced bugs in our most important user flows. I'm
+                    passionate about making our products accessible
+                    and performant for millions of users. I also
+                    handle on-call rotations and lead discussions when
+                    things go wrong, making sure we learn from each
+                    incident. I work closely with designers and
+                    product teams to improve our user experience and
+                    design systems.
                   </p>
                 </div>
               </div>
@@ -149,7 +156,32 @@
             <div class="container">
               <h2 class="section-title">Projects</h2>
               <div class="projects__grid">
-                <!-- Project cards will be added here -->
+                <a
+                  href="https://doulikeme.online"
+                  target="_blank"
+                  class="project-card"
+                >
+                  <h3 class="project-card__title">Do U Like Me?</h3>
+                  <p class="project-card__description">
+                    A digital "note-passing" app. You ask someone if
+                    they like you (via email) and you receive the
+                    response in your email.
+                  </p>
+                </a>
+                <a
+                  href="https://soundbored.online"
+                  target="_blank"
+                  class="project-card"
+                >
+                  <h3 class="project-card__title">Soundbored</h3>
+                  <p class="project-card__description">
+                    A straightforward soundboard app. You upload small
+                    sound files and can play them back. My main goal
+                    with this project was to create an app thats
+                    simple enough to build and rich enough to use as
+                    boilerplate to test out new technologies.
+                  </p>
+                </a>
               </div>
             </div>
           </section>
@@ -159,12 +191,18 @@
               <h2 class="section-title">Get in Touch</h2>
               <div class="contact__content">
                 <p class="contact__text">
-                  I'm always interested in hearing about new projects
-                  and opportunities. Feel free to reach out!
+                  Here is some of my contact information in case you
+                  want to see what I've been up to on Github or get an
+                  idea of what my face looks like via LinkedIn. My
+                  email is pretty much reserved for a recruiter that
+                  is just so impressed by this page, they are
+                  compelled to email me an offer directly (please no
+                  spam).
                 </p>
                 <div class="contact__links">
                   <a
-                    href="mailto:your.email@example.com"
+                    href="#"
+                    onclick="decodeAndCopyEmail()"
                     class="contact-icon"
                     aria-label="Email Me"
                   >
@@ -175,7 +213,8 @@
                     />
                   </a>
                   <a
-                    href="https://linkedin.com/in/yourprofile"
+                    href="https://www.linkedin.com/in/andregcabrera/"
+                    target="_blank"
                     class="contact-icon"
                     aria-label="LinkedIn"
                   >
@@ -186,7 +225,8 @@
                     />
                   </a>
                   <a
-                    href="https://github.com/yourusername"
+                    href="https://github.com/andregcab"
+                    target="_blank"
                     class="contact-icon"
                     aria-label="GitHub"
                   >

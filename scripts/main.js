@@ -240,3 +240,99 @@ document.addEventListener('DOMContentLoaded', () => {
     hero.style.animation = null;
   });
 });
+
+// Advanced email obfuscation with clipboard copy
+function decodeAndCopyEmail() {
+  // Base64 encoded email parts (cabrerandre@gmail.com)
+  const part1 = atob('Y2FicmVyYW5kcmU=');
+  const part2 = atob('Z21haWwuY29t');
+
+  // Additional obfuscation layer
+  const domain = String.fromCharCode(
+    103,
+    109,
+    97,
+    105,
+    108,
+    46,
+    99,
+    111,
+    109
+  );
+
+  // Reconstruct email with multiple methods
+  const email = part1 + '@' + domain;
+
+  // Copy to clipboard using modern API
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard
+      .writeText(email)
+      .then(() => {
+        showCopyFeedback();
+      })
+      .catch((err) => {
+        fallbackCopy(email);
+      });
+  } else {
+    fallbackCopy(email);
+  }
+}
+
+// Fallback copy method for older browsers
+function fallbackCopy(text) {
+  const textArea = document.createElement('textarea');
+  textArea.value = text;
+  textArea.style.position = 'fixed';
+  textArea.style.left = '-999999px';
+  textArea.style.top = '-999999px';
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+
+  try {
+    document.execCommand('copy');
+    showCopyFeedback();
+  } catch (err) {
+    console.error('Fallback copy failed:', err);
+  }
+
+  document.body.removeChild(textArea);
+}
+
+// Show visual feedback that email was copied
+function showCopyFeedback() {
+  // Create toast notification
+  const toast = document.createElement('div');
+  toast.className = 'toast-notification';
+  toast.textContent = 'Email copied to clipboard!';
+
+  // Add to page
+  document.body.appendChild(toast);
+
+  // Trigger animation
+  setTimeout(() => {
+    toast.classList.add('show');
+  }, 10);
+
+  // Remove after animation
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => {
+      if (toast.parentNode) {
+        toast.parentNode.removeChild(toast);
+      }
+    }, 300);
+  }, 3000);
+}
+
+// Prevent right-click context menu on email icon
+document.addEventListener('DOMContentLoaded', function () {
+  const emailIcon = document.querySelector(
+    '.contact-icon[onclick="decodeAndCopyEmail()"]'
+  );
+  if (emailIcon) {
+    emailIcon.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+    });
+  }
+});
