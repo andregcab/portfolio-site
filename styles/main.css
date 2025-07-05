@@ -4,7 +4,7 @@
   --color-text: #302f2d;
   --color-text-light: #373431;
 
-  --color-primary: #e8dadd;
+  --color-primary: #f1e5e8;
 
   /* UI colors */
   --color-divider: rgba(0, 0, 0, 0.2);
@@ -32,6 +32,25 @@
 
 /* Add the new font */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* Skip Link for Accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--color-text);
+  color: var(--color-surface);
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 10000;
+  font-weight: 500;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
 
 /* Reset & Base Styles */
 *,
@@ -232,7 +251,7 @@ section:not(#home).fade-in {
   letter-spacing: 0.05em;
   font-weight: 500;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0.8;
+  opacity: 1;
   position: relative;
 }
 
@@ -840,6 +859,7 @@ section:not(#home).fade-in {
   text-decoration: none;
   transition: color 0.3s ease;
   cursor: pointer;
+  font-weight: 500;
 }
 
 .mobile-menu .nav__links a:hover {

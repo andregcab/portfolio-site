@@ -35,25 +35,40 @@
     />
   </head>
   <body onload="window.scrollTo(0,0)">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="page-wrapper">
       <div class="page-container">
         <header class="header">
-          <nav class="nav">
+          <nav
+            class="nav"
+            role="navigation"
+            aria-label="Main navigation"
+          >
             <a href="#home" class="nav__logo"
               >Hello
               <span class="nav__logo-icon" aria-hidden="true"
                 >👋🏼</span
               ></a
             >
-            <ul class="nav__links">
-              <li><a href="#about">About</a></li>
-              <li><a href="#experience">Experience</a></li>
-              <li><a href="#projects">Projects</a></li>
-              <li><a href="#contact">Contact</a></li>
+            <ul class="nav__links" role="menubar">
+              <li role="none">
+                <a href="#about" role="menuitem">About</a>
+              </li>
+              <li role="none">
+                <a href="#experience" role="menuitem">Experience</a>
+              </li>
+              <li role="none">
+                <a href="#projects" role="menuitem">Projects</a>
+              </li>
+              <li role="none">
+                <a href="#contact" role="menuitem">Contact</a>
+              </li>
             </ul>
             <button
               class="mobile-menu-button"
               aria-label="Toggle mobile menu"
+              aria-expanded="false"
+              aria-controls="mobile-menu"
             >
               <span></span>
               <span></span>
@@ -63,7 +78,13 @@
         </header>
 
         <!-- Mobile Menu Overlay -->
-        <div class="mobile-menu">
+        <div
+          class="mobile-menu"
+          id="mobile-menu"
+          role="dialog"
+          aria-label="Mobile navigation menu"
+          aria-hidden="true"
+        >
           <button
             class="mobile-menu-close"
             aria-label="Close mobile menu"
@@ -71,21 +92,29 @@
             <span></span>
             <span></span>
           </button>
-          <ul class="nav__links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+          <ul class="nav__links" role="menubar">
+            <li role="none">
+              <a href="#about" role="menuitem">About</a>
+            </li>
+            <li role="none">
+              <a href="#experience" role="menuitem">Experience</a>
+            </li>
+            <li role="none">
+              <a href="#projects" role="menuitem">Projects</a>
+            </li>
+            <li role="none">
+              <a href="#contact" role="menuitem">Contact</a>
+            </li>
           </ul>
         </div>
 
-        <main class="main-content">
+        <main class="main-content" id="main-content">
           <section id="hero" id="home" class="hero">
             <div class="container">
-              <div class="hero__title">
+              <h1 class="hero__title">
                 <span class="hero__first-name">Andre</span>
                 <span class="hero__last-name">Cabrera</span>
-              </div>
+              </h1>
               <p class="hero__subtitle">
                 Software Engineer with a knack for precision and a
                 penchant for tomfoolery
@@ -130,7 +159,7 @@
             <div class="container">
               <h2 class="section-title">Experience</h2>
               <div class="experience__grid">
-                <div class="experience-card">
+                <article class="experience-card" tabindex="0">
                   <h3 class="experience-card__title">
                     Full Stack Developer - Kaufman Rossin
                   </h3>
@@ -147,11 +176,13 @@
                     increased business intelligence accessibility for
                     150+ non-technical staff
                   </p>
-                  <span class="experience-card__date"
-                    >January 2020 – January 2022</span
+                  <time
+                    class="experience-card__date"
+                    datetime="2020-01/2022-01"
+                    >January 2020 – January 2022</time
                   >
-                </div>
-                <div class="experience-card">
+                </article>
+                <article class="experience-card" tabindex="0">
                   <h3 class="experience-card__title">
                     Software Engineer I - Conde Nast
                   </h3>
@@ -166,11 +197,13 @@
                     focused on creating good documentation to help
                     other teams understand and work with our systems.
                   </p>
-                  <span class="experience-card__date"
-                    >January 2022 – March 2023</span
+                  <time
+                    class="experience-card__date"
+                    datetime="2022-01/2023-03"
+                    >January 2022 – March 2023</time
                   >
-                </div>
-                <div class="experience-card">
+                </article>
+                <article class="experience-card" tabindex="0">
                   <h3 class="experience-card__title">
                     Software Engineer II - Conde Nast
                   </h3>
@@ -194,10 +227,12 @@
                     product teams to improve our user experience and
                     design systems.
                   </p>
-                  <span class="experience-card__date"
-                    >March 2023 – Present</span
+                  <time
+                    class="experience-card__date"
+                    datetime="2023-03/"
+                    >March 2023 – Present</time
                   >
-                </div>
+                </article>
               </div>
             </div>
           </section>

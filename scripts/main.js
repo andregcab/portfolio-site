@@ -172,12 +172,26 @@ function openMobileMenu() {
   mobileMenu.classList.add('active');
   mobileMenuButton.classList.add('active');
   document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+  // Update ARIA states
+  mobileMenuButton.setAttribute('aria-expanded', 'true');
+  mobileMenu.setAttribute('aria-hidden', 'false');
+
+  // Focus management
+  mobileMenuClose.focus();
 }
 
 function closeMobileMenu() {
   mobileMenu.classList.remove('active');
   mobileMenuButton.classList.remove('active');
   document.body.style.overflow = ''; // Restore scrolling
+
+  // Update ARIA states
+  mobileMenuButton.setAttribute('aria-expanded', 'false');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+
+  // Return focus to menu button
+  mobileMenuButton.focus();
 }
 
 if (mobileMenuButton && mobileMenu) {
