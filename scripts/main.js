@@ -166,55 +166,50 @@ const mobileMenuButton = document.querySelector(
   '.mobile-menu-button'
 );
 const mobileMenu = document.querySelector('.mobile-menu');
+const mobileMenuClose = document.querySelector('.mobile-menu-close');
+
+function openMobileMenu() {
+  mobileMenu.classList.add('active');
+  mobileMenuButton.classList.add('active');
+  document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+function closeMobileMenu() {
+  mobileMenu.classList.remove('active');
+  mobileMenuButton.classList.remove('active');
+  document.body.style.overflow = ''; // Restore scrolling
+}
 
 if (mobileMenuButton && mobileMenu) {
-  // Toggle menu on button click
-  mobileMenuButton.addEventListener('click', (e) => {
-    e.stopPropagation();
-    mobileMenu.classList.toggle('active');
-    mobileMenuButton.classList.toggle('active');
+  mobileMenuButton.addEventListener('click', openMobileMenu);
+
+  // Close menu when clicking on the overlay
+  mobileMenu.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) {
+      closeMobileMenu();
+    }
   });
 
-  // Close menu when clicking on a link
+  // Close menu when clicking on links
   const mobileMenuLinks = mobileMenu.querySelectorAll('a');
   mobileMenuLinks.forEach((link) => {
-    link.addEventListener('click', (e) => {
-      e.stopPropagation();
-      mobileMenu.classList.remove('active');
-      mobileMenuButton.classList.remove('active');
-    });
+    link.addEventListener('click', closeMobileMenu);
   });
 
-  // Close menu when clicking on the menu overlay (but not on links)
-  mobileMenu.addEventListener('click', (e) => {
-    // Only close if clicking on the overlay itself, not on links
-    if (e.target === mobileMenu) {
-      mobileMenu.classList.remove('active');
-      mobileMenuButton.classList.remove('active');
-    }
-  });
-
-  // Close menu when clicking outside the entire menu
-  document.addEventListener('click', (e) => {
-    if (
-      !mobileMenu.contains(e.target) &&
-      !mobileMenuButton.contains(e.target)
-    ) {
-      mobileMenu.classList.remove('active');
-      mobileMenuButton.classList.remove('active');
-    }
-  });
-
-  // Close menu on escape key
+  // Close menu with Escape key
   document.addEventListener('keydown', (e) => {
     if (
       e.key === 'Escape' &&
       mobileMenu.classList.contains('active')
     ) {
-      mobileMenu.classList.remove('active');
-      mobileMenuButton.classList.remove('active');
+      closeMobileMenu();
     }
   });
+
+  // Close menu with X button
+  if (mobileMenuClose) {
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+  }
 }
 
 // Handle hero animations
