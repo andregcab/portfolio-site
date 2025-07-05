@@ -1,19 +1,13 @@
 :root {
-  /* Base colors - warm browns and beiges */
-  --color-surface: #c1c0b6;
-  --color-background: #b2b2a8;
-  --color-text: #3f3b37;
-  --color-text-light: #5c4033; /* Medium warm brown */
+  --color-surface: #b5a7aa;
+  --color-background: #5f5e5e;
+  --color-text: #302f2d;
+  --color-text-light: #373431;
 
-  /* Accent colors - warm reds and pinks */
-  --color-primary: #db4c44; /* Warm brick red */
-  --color-secondary: #d88c9a; /* Dusty rose */
-  --color-accent: #e6a4a4; /* Soft pink */
+  --color-primary: #e8dadd;
 
   /* UI colors */
-  --color-border: #d4c5b7; /* Warm taupe */
-  --color-divider: rgba(0, 0, 0, 0.2); /* Light warm brown */
-  --color-hover: #e8dfd3; /* Light warm brown */
+  --color-divider: rgba(0, 0, 0, 0.2);
 
   /* Typography */
   --font-primary: 'Inter', sans-serif;
@@ -31,7 +25,7 @@
   --container-padding: var(--spacing-md);
 
   /* New container styles */
-  --color-container: #b2b2a8; /* Slightly darker and greyer container color */
+  --color-container: #867679;
   --border-radius-lg: 2rem;
   --container-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
@@ -473,8 +467,8 @@ section:not(#home).fade-in {
 
 /* Experience Cards */
 .experience-card {
-  background-color: #fbefdf;
-  color: var(--color-text);
+  background-color: #e8dadd;
+  color: var(--color-text), 100%;
   padding: 2rem 1.5rem;
   border-bottom-right-radius: 4rem;
   position: relative;
@@ -488,15 +482,15 @@ section:not(#home).fade-in {
 }
 
 .experience-card:nth-child(1)::before {
-  background-color: #3f3b37;
+  background-color: #9ca6a6;
 }
 
 .experience-card:nth-child(2)::before {
-  background-color: #db4c44;
+  background-color: #697070;
 }
 
 .experience-card:nth-child(3)::before {
-  background-color: #e7aa2c;
+  background-color: #8b5353;
 }
 
 .experience-card::before {
@@ -545,7 +539,7 @@ section:not(#home).fade-in {
   font-size: 1.4rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: var(--color-hover);
+  color: var(--color-primary);
   transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 3;
@@ -577,7 +571,7 @@ section:not(#home).fade-in {
   bottom: 1rem;
   left: 1.5rem;
   font-size: 0.85rem;
-  color: var(--color-hover);
+  color: var(--color-primary);
   opacity: 0.8;
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 3;
@@ -777,7 +771,7 @@ section:not(#home).fade-in {
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: var(--color-background);
+  /* background-color: var(--color-container); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -827,7 +821,7 @@ section:not(#home).fade-in {
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: var(--color-primary);
+  /* background-color: var(--color-primary); */
 }
 
 /* Responsive Design */
@@ -1005,7 +999,7 @@ section:not(#home).fade-in {
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: var(--color-background);
+    background-color: var(--color-container);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1340,8 +1334,8 @@ section.fade-in .section-title {
 
 /* Project Cards as Links */
 .project-card {
-  background-color: #3f3b37;
-  color: #fbefdf;
+  color: var(--color-text);
+  /* color: #fbefdf; */
   padding: 2rem 1.5rem;
   border-bottom-right-radius: 4rem;
   position: relative;
@@ -1378,7 +1372,7 @@ section.fade-in .section-title {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #3f3b37;
+  background-color: #e8dadd;
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 2;
 }
@@ -1440,7 +1434,7 @@ section.fade-in .section-title {
   left: 0;
   width: 100%;
   height: 100%;
-  border: 1px solid #e7aa2c;
+  border: 2px solid #a6b8b8;
   border-radius: 32% 58% 69% 43% / 48% 32% 59% 55%;
   transition: 1.2s ease-in-out;
   animation: animate 12s linear infinite;
@@ -1452,7 +1446,7 @@ section.fade-in .section-title {
   left: 0;
   width: 100%;
   height: 100%;
-  border: 1px solid #3f3b37;
+  border: 2px solid #6f7e7e;
   border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
   transition: 1.2s ease-in-out;
   animation: animate 8s linear infinite;
@@ -1464,7 +1458,7 @@ section.fade-in .section-title {
   left: 0;
   width: 100%;
   height: 100%;
-  border: 1px solid #db4c44;
+  border: 2px solid #ac6b6b;
   border-radius: 31% 45% 74% 35% / 38% 56% 51% 87%;
   transition: 1.2s ease-in-out;
   animation: animate2 20s linear infinite;
